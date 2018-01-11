@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { AuthService } from './user/auth.service';
 
 @Component({
@@ -7,12 +7,12 @@ import { AuthService } from './user/auth.service';
     templateUrl: './app.component.html'
 })
 export class AppComponent {
-    pageTitle: string = 'Acme Product Management';
+    pageTitle = 'Acme Product Management';
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private router: Router) { }
 
     logOut(): void {
         this.authService.logout();
-        console.log('Log out');
+        this.router.navigateByUrl('/welcome'); // remove every secondary parameter attached to the url.
     }
 }

@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
@@ -24,11 +25,8 @@ import { MessageModule } from './messages/message.module';
     ProductModule,
     UserModule,
     MessageModule,
-    RouterModule.forRoot([
-      {path: 'welcome', component: WelcomeComponent}, // order matters
-      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      {path: '**', component: PageNotFoundComponent} // for default route
-    ], {useHash: true}) // using hasbased URL will make us bookmark pages.everything after the # will be ignored
+    AppRoutingModule, // As ordering matters this has to come at the end becuase it has wildcard mapping.
+                      // Else page not found error will be shown.
   ],
   declarations: [
     AppComponent,
